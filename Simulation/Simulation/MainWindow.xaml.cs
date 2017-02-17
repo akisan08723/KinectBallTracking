@@ -113,6 +113,14 @@ namespace Simulation
             }
         }
 
+        /// <summary>
+        /// It's about bady and ball.
+        /// we should divide it into new methods because it have many function in one method.
+        /// and 
+        /// There may be other good ways for swing speed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BodyReader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
         {
             HandState rightHandState;
@@ -166,14 +174,14 @@ namespace Simulation
                                     flag = 1;
                                 }
 
-                                if(realLeftHandy<-0.1&&realRightHandy<realRightElbowy&& ball_flag==0&&rightHandState==HandState.Closed&& leftHandState == HandState.Closed)
+                                if(realLeftHandy<-0.1 && ball_flag==0&&rightHandState==HandState.Closed&& leftHandState == HandState.Closed)
                                 {
                                     ball_flag = 1;
                                     swingStartTime = DateTime.Now.Millisecond / 1000f + DateTime.Now.Second;
                                     swingStartPosition = realLeftHandy * 100;
                                 }
 
-                                else if (realLeftHandy > 0.1 && realRightHandy > realRightElbowy && ball_flag == 1 && rightHandState == HandState.Closed && leftHandState == HandState.Closed)
+                                else if (realLeftHandy > -0.1 && ball_flag == 1 && rightHandState == HandState.Closed && leftHandState == HandState.Closed)
                                 {
                                     ball_flag = 2;
                                     starttime = DateTime.Now.Millisecond / 1000f + DateTime.Now.Second + DateTime.Now.Minute * 60;
@@ -188,7 +196,7 @@ namespace Simulation
                                     curenttime = DateTime.Now.Millisecond / 1000f + DateTime.Now.Second + DateTime.Now.Minute * 60;
 
                                     //simulation
-                                    float swing = swingDistence / swingTime;
+                                    float swing = swingDistence / swingTime;//swing speed
                                     if (stopflag != 1)
                                     {
                                         time = curenttime - starttime;
@@ -203,7 +211,8 @@ namespace Simulation
 
                                     if ((startY - po[1] * pixel_per_cm) > 1000)
                                     {
-                                        Stop_reset();
+                                        stopflag=1;
+                                        //Stop_reset();  //if using it, everything Reset
                                     }
 
                                 }
@@ -243,7 +252,28 @@ namespace Simulation
 
         private void Stop_reset()
         {
-            stopflag = 1;
+            //stopflag = 1;
+            flag = 0;
+            ball_flag = 0;
+            goupflag = 0;
+            stopflag = 0;
+
+            startX = 0;
+            startY = 0;
+            pixel_per_cm = 0;
+            po[0] = 0;
+            po[1] = 0;
+
+            starttime = 0;
+            curenttime = 0;
+            time = 0;
+
+            swingStartPosition = 0;
+            swingEndPosition = 0;
+            swingDistence = 0;
+            swingTime = 0;
+            swingStartTime = 0;
+            swingEndTime = 0;
         }
     }
 }
