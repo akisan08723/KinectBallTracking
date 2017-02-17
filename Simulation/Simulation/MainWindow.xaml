@@ -1,0 +1,20 @@
+﻿<Window x:Class="Simulation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simulation"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        WindowState="Maximized" Background="Black" Closing="Window_Closing">
+    <Viewbox>
+        <Grid Width="1920" Height="1080">
+            <Image Name="camera" />
+            <Canvas Name="canvas">
+                <Ellipse Name="myBall" Width="40.0" Height="40.0" Fill="Blue" />
+            </Canvas>
+            <TextBlock Height="50" HorizontalAlignment="Right" Margin="60,90,0,0" Name="Ball_data" Text="TextBlock" VerticalAlignment="Top" FontSize="40" Foreground="Blue"></TextBlock>
+            <TextBlock Height="50" HorizontalAlignment="Right" Margin="60,150,0,0" Name="Hand_data" Text="TextBlock" VerticalAlignment="Top" FontSize="40" Foreground="Blue"></TextBlock>
+        </Grid>
+    </Viewbox>
+</Window>
